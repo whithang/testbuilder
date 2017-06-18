@@ -16,7 +16,7 @@ var detectNetwork = function(cardNumber) {
   var firstDigits = cardNumber.substring(0,2);
   if (cardNumber.length === 14){
     if (firstDigits === '38' || firstDigits === '39'){
-      return 'Diner\s Club';
+      return 'Diner\'s Club';
     }
   } else if (cardNumber.length === 15){
     if (firstDigits === '34' || firstDigits === '37'){
