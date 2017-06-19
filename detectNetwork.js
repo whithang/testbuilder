@@ -22,6 +22,14 @@ var detectNetwork = function(cardNumber) {
     if (firstDigits === '34' || firstDigits === '37'){
       return 'American Express';
     }
+  } else if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19){
+    if (firstDigits.substring(0,1) === '4'){
+      return 'Visa';
+    } else if (cardNumber.length === 16){
+      if (firstDigits === '51' || firstDigits === '52' || firstDigits === '53' || firstDigits === '54' || firstDigits === '55'){
+        return 'MasterCard';
+      }
+    }
   }
   return 'error';
 };
