@@ -14,20 +14,31 @@ var detectNetwork = function(cardNumber) {
 
   // Once you've read this, go ahead and try to implement this function, then return to the console.
   var firstDigits = cardNumber.substring(0,2);
-  if (cardNumber.length === 14){
-    if (firstDigits === '38' || firstDigits === '39'){
-      return 'Diner\'s Club';
-    }
-  } else if (cardNumber.length === 15){
-    if (firstDigits === '34' || firstDigits === '37'){
-      return 'American Express';
-    }
-  } else if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19){
-    if (firstDigits.substring(0,1) === '4'){
-      return 'Visa';
-    } else if (cardNumber.length === 16){
-      if (firstDigits === '51' || firstDigits === '52' || firstDigits === '53' || firstDigits === '54' || firstDigits === '55'){
-        return 'MasterCard';
+  var threeDigits = cardNumber.substring(0,3);
+  var fourDigits = cardNumber.substring(0,4);
+  var len = cardNumber.length;
+  if (cardNumber.length <= 19 && cardNumber.length >= 12){
+    if (fourDigits === '5018' || fourDigits === '5020' || fourDigits === '5038' || fourDigits === '6304'){
+      return 'Maestro';
+    } else if (cardNumber.length === 14){
+      if (firstDigits === '38' || firstDigits === '39'){
+        return 'Diner\'s Club';
+      }
+    } else if (cardNumber.length === 15){
+      if (firstDigits === '34' || firstDigits === '37'){
+        return 'American Express';
+      }
+    } else if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19){
+      if (firstDigits.substring(0,1) === '4'){
+        return 'Visa';
+      } else if (cardNumber.length !== 13){
+        if (fourDigits === '6011' || firstDigits === '65' || threeDigits === '644' || threeDigits === '645' || threeDigits === '646' || threeDigits === '647' || threeDigits === '648' || threeDigits === '649'){
+          return 'Discover';
+        } else if (cardNumber.length !== 19){
+          if (firstDigits === '51' || firstDigits === '52' || firstDigits === '53' || firstDigits === '54' || firstDigits === '55'){
+            return 'MasterCard';
+          }
+        }
       }
     }
   }
